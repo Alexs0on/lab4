@@ -201,7 +201,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
        L"Segoe UI"
    );
 
-   htext = CreateWindowW(L"STATIC", L"Матрица смежности (nxm):", WS_CHILD | WS_VISIBLE | WS_BORDER,
+   htext = CreateWindowW(L"STATIC", L"РњР°С‚СЂРёС†Р° СЃРјРµР¶РЅРѕСЃС‚Рё (nxm):", WS_CHILD | WS_VISIBLE | WS_BORDER,
        10, 10, 200, 30, hWnd, NULL, hInstance, NULL);
 
    hEditSize = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER,
@@ -210,20 +210,20 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hEditRelation = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,
        10, 50, 350, 250, hWnd, NULL, hInstance, NULL);
 
-   CreateWindowW(L"STATIC", L"Начальная вершина:", WS_CHILD | WS_VISIBLE,
+   CreateWindowW(L"STATIC", L"РќР°С‡Р°Р»СЊРЅР°СЏ РІРµСЂС€РёРЅР°:", WS_CHILD | WS_VISIBLE,
        10, 310, 130, 35, hWnd, NULL, hInstance, NULL);
    hEditStart = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER,
        150, 310, 60, 25, hWnd, NULL, hInstance, NULL);
 
-   CreateWindowW(L"STATIC", L"Конечная вершина:", WS_CHILD | WS_VISIBLE,
+   CreateWindowW(L"STATIC", L"РљРѕРЅРµС‡РЅР°СЏ РІРµСЂС€РёРЅР°:", WS_CHILD | WS_VISIBLE,
        220, 310, 130, 35, hWnd, NULL, hInstance, NULL);
    hEditEnd = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER,
        360, 310, 60, 25, hWnd, NULL, hInstance, NULL);
 
-   hButton = CreateWindowW(L"BUTTON", L"Загрузить матрицу", WS_CHILD | WS_VISIBLE,
+   hButton = CreateWindowW(L"BUTTON", L"Р—Р°РіСЂСѓР·РёС‚СЊ РјР°С‚СЂРёС†Сѓ", WS_CHILD | WS_VISIBLE,
        380, 10, 150, 30, hWnd, (HMENU)1, hInstance, NULL);
 
-   hButtonFindPath = CreateWindowW(L"BUTTON", L"Найти путь", WS_CHILD | WS_VISIBLE,
+   hButtonFindPath = CreateWindowW(L"BUTTON", L"РќР°Р№С‚Рё РїСѓС‚СЊ", WS_CHILD | WS_VISIBLE,
        430, 310, 100, 25, hWnd, (HMENU)2, hInstance, NULL);
 
    hOutput = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY,
@@ -262,7 +262,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             int n = 0, m = 0;
             if (swscanf_s(bufferSize, L"%d %d", &n, &m) != 2 || n <= 0 || m <= 0) {
-                SetWindowTextW(hOutput, L"Ошибка: введите корректные размеры n и m");
+                SetWindowTextW(hOutput, L"РћС€РёР±РєР°: РІРІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹ n Рё m");
                 break;
             }
 
@@ -283,7 +283,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     row.push_back(val);
                 }
                 if ((int)row.size() != m) {
-                    SetWindowTextW(hOutput, L"Ошибка: количество столбцов в строке не совпадает с m");
+                    SetWindowTextW(hOutput, L"РћС€РёР±РєР°: РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ СЃС‚СЂРѕРєРµ РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ m");
                     graphMatrix.clear();
                     error = true;
                     break;
@@ -293,7 +293,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (error) break;
 
             if ((int)graphMatrix.size() != n) {
-                SetWindowTextW(hOutput, L"Ошибка: количество строк матрицы не совпадает с n");
+                SetWindowTextW(hOutput, L"РћС€РёР±РєР°: РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РјР°С‚СЂРёС†С‹ РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ n");
                 graphMatrix.clear();
                 break;
             }
@@ -307,13 +307,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
 
 
-            SetWindowTextW(hOutput, L"Матрица загружена. Отображение графа обновлено.");
+            SetWindowTextW(hOutput, L"РњР°С‚СЂРёС†Р° Р·Р°РіСЂСѓР¶РµРЅР°. РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РіСЂР°С„Р° РѕР±РЅРѕРІР»РµРЅРѕ.");
             InvalidateRect(hWnd, NULL, TRUE);
         }
         else if (LOWORD(wParam) == 2) 
         {
             if (graphMatrix.empty()) {
-                SetWindowTextW(hOutput, L"Ошибка: сначала загрузите матрицу смежности");
+                SetWindowTextW(hOutput, L"РћС€РёР±РєР°: СЃРЅР°С‡Р°Р»Р° Р·Р°РіСЂСѓР·РёС‚Рµ РјР°С‚СЂРёС†Сѓ СЃРјРµР¶РЅРѕСЃС‚Рё");
                 break;
             }
 
@@ -323,7 +323,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             int start = -1, end = -1;
             if (swscanf_s(startBuf, L"%d", &start) != 1 || swscanf_s(endBuf, L"%d", &end) != 1) {
-                SetWindowTextW(hOutput, L"Ошибка: введите корректные номера вершин");
+                SetWindowTextW(hOutput, L"РћС€РёР±РєР°: РІРІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ РЅРѕРјРµСЂР° РІРµСЂС€РёРЅ");
                 break;
             }
 
@@ -332,7 +332,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             int n = (int)graphMatrix.size();
             if (start < 0 || start >= n || end < 0 || end >= n) {
-                SetWindowTextW(hOutput, L"Ошибка: номера вершин выходят за границы");
+                SetWindowTextW(hOutput, L"РћС€РёР±РєР°: РЅРѕРјРµСЂР° РІРµСЂС€РёРЅ РІС‹С…РѕРґСЏС‚ Р·Р° РіСЂР°РЅРёС†С‹");
                 break;
             }
 
@@ -341,21 +341,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             vector<int> dist = dijkstra(graphMatrix, start, parent);
 
             if (dist[end] >= 1e9) {
-                SetWindowTextW(hOutput, L"Путь не найден.");
+                SetWindowTextW(hOutput, L"РџСѓС‚СЊ РЅРµ РЅР°Р№РґРµРЅ.");
                 break;
             }
 
             vector<int> path = getPath(end, parent);
 
             wstringstream result;
-            result << L"Кратчайший путь из " << (start + 1) << L" в " << (end + 1) << L":\r\n";
+            result << L"РљСЂР°С‚С‡Р°Р№С€РёР№ РїСѓС‚СЊ РёР· " << (start + 1) << L" РІ " << (end + 1) << L":\r\n";
 
             if (dist[end] >= 1e9) {
-                result << L"Путь не найден.";
+                result << L"РџСѓС‚СЊ РЅРµ РЅР°Р№РґРµРЅ.";
             }
             else {
                 printPath(path, result);
-                result << L"\r\nРасстояние: " << dist[end];
+                result << L"\r\nР Р°СЃСЃС‚РѕСЏРЅРёРµ: " << dist[end];
             }
 
             SetWindowTextW(hOutput, result.str().c_str());
@@ -372,7 +372,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         HDC hdc = BeginPaint(hWnd, &ps);
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         SelectObject(hdc, hFontOutput);
-        TextOutW(hdc, 10, 50, L"Размер nxm", lstrlenW(L"Размер nxm"));
+        TextOutW(hdc, 10, 50, L"Р Р°Р·РјРµСЂ nxm", lstrlenW(L"Р Р°Р·РјРµСЂ nxm"));
         TextOutW(hdc, 40, 90, L"nxm", lstrlenW(L"nxm"));
 
         if (!graphMatrix.empty()) {
